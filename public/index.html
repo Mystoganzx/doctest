@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Imóveis de Itumirim/MG</title>
+
+    <!-- Carregar as fontes personalizadas localmente -->
+    <style>
+        @font-face {
+            font-family: 'FonteCabecalho';
+            src: url('fonts/MinhaFonteCabecalho.ttf') format('truetype'); /* Caminho relativo à pasta fonts */
+        }
+
+        @font-face {
+            font-family: 'FonteCorpo';
+            src: url('fonts/MinhaFonteCorpo.ttf') format('truetype'); /* Caminho relativo à pasta fonts */
+        }
+
+        /* Estilo geral da página */
+        body {
+            font-family: 'FonteCorpo', Arial, sans-serif; /* Aplica a fonte para o restante do site */
+            background: linear-gradient(180deg, #0044cc, #000000); /* Degradê de azul para preto */
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* CNS no canto superior esquerdo, fonte Arial e tamanho 15px */
+        .cns {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            color: #ffffff;
+        }
+
+        /* Cabeçalho com a fonte personalizada */
+        header {
+            width: 100%;
+            padding: 40px 0;
+            background-color: transparent;
+            text-align: center;
+            font-family: 'FonteCabecalho', Arial, sans-serif; /* Aplica a fonte para o cabeçalho */
+        }
+
+        header img {
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        /* Estilo da caixa principal de conteúdo */
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 40px 0;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container h2 {
+            color: #00aaff;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        /* Estilo dos campos de formulário com a fonte personalizada */
+        label {
+            font-size: 18px;
+            color: #f0f0f0;
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #00aaff;
+            background-color: #333333;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: 'FonteCorpo', Arial, sans-serif; /* Aplica a fonte personalizada */
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0044cc;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #003399;
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            width: 100%;
+            padding: 20px;
+            background-color: transparent;
+            text-align: center;
+            color: #f0f0f0;
+            margin-top: auto;
+        }
+
+        /* Adicionando ícones antes dos textos no rodapé */
+        footer .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-item img {
+            width: 20px; /* Tamanho pequeno para os ícones */
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #00aaff;
+        }
+
+        /* Estilo para direitos reservados no rodapé */
+        .rights-reserved {
+            font-size: 12px;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+    </style>
+
+    <!-- Função JavaScript para aceitar apenas números no campo de protocolo -->
+    <script>
+        function somenteNumeros(e) {
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                e.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- CNS no canto superior esquerdo -->
+    <div class="cns">CNS: 05.939-4</div>
+
+    <!-- Cabeçalho com logo e título -->
+    <header>
+        <img src="images/logo.png" alt="Registro de Imóveis Logo">
+        <h1>Registro de Imóveis de Itumirim/MG</h1>
+    </header>
+
+    <!-- Formulário de envio de documentos -->
+    <div class="container">
+        <h2>Envio de Documentos</h2>
+        <form id="form-upload" enctype="multipart/form-data" method="POST" action="/upload">
+            <!-- Limitar a 5 caracteres e aceitar apenas números -->
+            <label for="protocolo">Número do Protocolo:</label>
+            <input type="text" id="protocolo" name="protocolo" maxlength="5" onkeypress="somenteNumeros(event)" required>
+
+            <label for="documento">Selecionar Documento(s):</label>
+            <input type="file" id="documento" name="documento" multiple accept="application/pdf">
+
+            <label for="comprovante">Selecionar Comprovante de Pagamento:</label>
+            <input type="file" id="comprovante" name="comprovante" multiple accept="application/pdf">
+
+            <button type="submit">Enviar Documentos</button>
+        </form>
+    </div>
+
+    <!-- Rodapé com ícones e informações -->
+    <footer>
+        <div class="footer-item">
+            <img src="images/address-icon.png" alt="Endereço">
+            <p>Rua São José, 31, Centro - Itumirim/MG</p>
+        </div>
+        <div class="footer-item">
+            <img src="images/whatsapp-icon.png" alt="WhatsApp">
+            <a href="https://wa.me/5535984658828" target="_blank">(35) 98465-8828</a>
+        </div>
+        <div class="footer-item">
+            <img src="images/phone-icon.png" alt="Telefone">
+            <p>(35) 3823-1176</p>
+        </div>
+        <!-- Texto de direitos reservados -->
+        <p class="rights-reserved">Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>
+
+

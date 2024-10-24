@@ -1,0 +1,16 @@
+{
+  "name": "document-upload-system",
+  "version": "1.0.0",
+  "description": "Plataforma de envio de documentos com número de protocolo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "multer": "^1.4.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
