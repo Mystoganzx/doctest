@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",  // Substitua pelo nome do seu arquivo principal, como "index.js" ou "app.js"
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"  // Certifique-se de que aponta para o nome do seu arquivo principal
+    }
+  ]
+}
