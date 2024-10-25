@@ -158,15 +158,36 @@
             color: #ffffff;
             margin-top: 20px;
         }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
 
-    <!-- Função JavaScript para aceitar apenas números no campo de protocolo -->
+    <!-- Função JavaScript para aceitar apenas números no campo de protocolo e validar o formulário -->
     <script>
         function somenteNumeros(e) {
             var charCode = (e.which) ? e.which : e.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
                 e.preventDefault();
             }
+        }
+
+        // Validação do formulário no frontend
+        function validateForm(event) {
+            const protocolo = document.getElementById('protocolo').value;
+            const documento = document.getElementById('documento').files.length;
+            const comprovante = document.getElementById('comprovante').files.length;
+            const errorMessage = document.getElementById('error-message');
+
+            if (!protocolo || (documento === 0 && comprovante === 0)) {
+                event.preventDefault(); // Impede o envio do formulário
+                errorMessage.textContent = 'Por favor, insira o número do protocolo e envie pelo menos um arquivo.';
+                return false;
+            }
+            return true;
         }
     </script>
 </head>
@@ -184,7 +205,7 @@
     <!-- Formulário de envio de documentos -->
     <div class="container">
         <h2>Envio de Documentos</h2>
-        <form id="form-upload" enctype="multipart/form-data" method="POST" action="/upload">
+        <form id="form-upload" enctype="multipart/form-data" method="POST" action="/upload" onsubmit="validateForm(event)">
             <!-- Limitar a 5 caracteres e aceitar apenas números -->
             <label for="protocolo">Número do Protocolo:</label>
             <input type="text" id="protocolo" name="protocolo" maxlength="5" onkeypress="somenteNumeros(event)" required>
@@ -196,6 +217,7 @@
             <input type="file" id="comprovante" name="comprovante" multiple accept="application/pdf">
 
             <button type="submit">Enviar Documentos</button>
+            <p id="error-message" class="error-message"></p>
         </form>
     </div>
 
@@ -219,5 +241,4 @@
 
 </body>
 </html>
-
 
