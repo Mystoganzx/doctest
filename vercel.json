@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",  // Substitua pelo nome do seu arquivo principal, como "index.js" ou "app.js"
+      "src": "index.js",  // Confirme se "index.js" é o nome do seu arquivo principal
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server.js"  // Certifique-se de que aponta para o nome do seu arquivo principal
+      "dest": "index.js"  // Confirme se "index.js" é o nome do seu arquivo principal
     }
   ]
 }
